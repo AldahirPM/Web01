@@ -7,21 +7,19 @@
                 <h1>Todas las entradas</h1>
                              
                 <?php
-                    $entradas = conseguirEntradas($cn);
+                    $entradas = conseguirEntradas($cn , false );
                     if(!empty($entradas)):
                     while($entrada = mysqli_fetch_assoc($entradas)): 
-                    
                 ?> 
-                        <article class = "entrada"> 
-                         
-                            <a href="entrada.php?id=<?$entrada['id']?>">
-                                <h2><?=$entrada['titulo']?> </h2>
-                                <span class="fecha" ><?= $entrada['nombre']." |    ". $entrada['fecha'] ?></span>
+                <article class = "entrada"> 
+                    <a href="entrada.php?id=<?=$entrada['id']?>">
+                        <h2><?=$entrada['titulo']?> </h2>
+                            <span class="fecha" ><?= $entrada['nombre']." | ". $entrada['fecha'] ?></span>
                                 <p>
                                     <?= substr($entrada['descripcion'] , 0 , 200)."..." ?>
                                 </p>
-                            </a>
-                        </article>
+                    </a>
+                </article>
                 <?php 
                         endwhile;
                     endif;

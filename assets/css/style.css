@@ -150,6 +150,7 @@ input[type="submit"],.boton{
 
 }
 .boton{
+   color: white !important;
    width: 130px;
    text-align: center;
 

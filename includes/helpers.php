@@ -42,21 +42,16 @@ function conseguirCategorias($cone){
   return $result;
 }
 function conseguirEntrada($cone , $id){
-  $sql ="select e.*, c.nombre as 'categoria' from entradas e inner join categorias c on e.categoria_id = c.id where e.id = $id";
+  $sql ="select e.* , c.nombre as 'categoria', CONCAT(u.nombre ,' ', u.apellidos) as usuario from entradas e INNER JOIN  categorias c ON e.categoria_id = c.id inner join usuarios u on e.usuario_id = u.id WHERE e.id=  $id";
   $entrada = mysqli_query($cone , $sql);
   $resultado = array();
   if($entrada && mysqli_num_rows($entrada)){
     $resultado = mysqli_fetch_assoc($entrada);
   }
   return $resultado;
-  var_dump($resultado);
-  die();
-  
 }
 function conseguirEntradas($cone , $limit= null , $categorias = null){
-
-  
-  $sql="select e.* , c.* from entradas e INNER JOIN  categorias c ON e.categoria_id = c.id  ";
+  $sql="select e.* , c.nombre from entradas e INNER JOIN  categorias c ON e.categoria_id = c.id  ";
   if(!empty($categorias)){
     $sql.="where c.id = $categorias";
   }

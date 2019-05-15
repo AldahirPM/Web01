@@ -14,9 +14,9 @@
                 ?> 
                         <article class = "entrada"> 
                          
-                            <a href="entrada.php?id=<?$entrada['id']?>">
+                            <a href="entrada.php?id=<?=$entrada['id']?>">
                                 <h2><?=$entrada['titulo']?> </h2>
-                                <span class="fecha" ><?= $entrada['nombre']." |    ". $entrada['fecha'] ?></span>
+                                <span class="fecha" ><?= $entrada['nombre']." | ". $entrada['fecha'] ?></span>
                                 <p>
                                     <?= substr($entrada['descripcion'] , 0 , 200)."..." ?>
                                 </p>
