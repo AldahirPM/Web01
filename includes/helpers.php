@@ -50,10 +50,13 @@ function conseguirEntrada($cone , $id){
   }
   return $resultado;
 }
-function conseguirEntradas($cone , $limit= null , $categorias = null){
+function conseguirEntradas($cone , $limit= null , $categorias = null , $busqueda = null){
   $sql="select e.* , c.nombre from entradas e INNER JOIN  categorias c ON e.categoria_id = c.id  ";
   if(!empty($categorias)){
     $sql.="where c.id = $categorias";
+  }
+  if(!empty($busqueda)){
+    $sql.="where e.titulo LIKE '%$busqueda%'";
   }
   $sql.=" ORDER BY e.id DESC "; 
 
@@ -78,6 +81,7 @@ function mostrarCategorias($cone , $id  ){
   }
   return $result;
 }
+
 
 
 

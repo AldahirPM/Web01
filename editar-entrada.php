@@ -18,7 +18,7 @@
     Edita tu entrada <?=$entrada_actual['titulo'];?>
     </p>
     <br>
-    <form action="guardarentrada.php" method="POST">
+    <form action="guardarentrada.php?editar=<?=$entrada_actual['id']?>" method="POST">
         <label for="titulo">Titulo:</label>
         <input type="text" id="nombre" name="titulo" value="<?=$entrada_actual['titulo'];?>">
         <?php echo isset($_SESSION['errores_entrada']) ?  mostrarError($_SESSION['errores_entrada'],'titulo'): '';?>
@@ -27,12 +27,14 @@
         <?php echo isset($_SESSION['errores_entrada']) ?  mostrarError($_SESSION['errores_entrada'],'descripcion'): '';?>
         <label for="categoria">Categoria:</label>
         <select name="categoria" id="">
-            <?php
+            <?php  
+             
                 $categorias = conseguirCategorias($cn);
                 if(!empty($categorias)):
                 while($categoria = mysqli_fetch_assoc($categorias)):
+                
             ?>
-                <option value="<?=$categoria['id']?>"><?=($categoria['id'] == $entrada_actual['categoria_id']) ? 'select="select"' : '' ?>
+                <option value="<?=$categoria['id']?>"<?= ($categoria['id'] == $entrada_actual['categoria_id']) ? 'selected="selected"' : '' ?>> 
                 
                     <?= $categoria['nombre'] ?>
                 </option>
